@@ -1,5 +1,9 @@
 <resources>
-    <string name="app_name">TouchGrass_FinalProject</string>
+    <string name="app_name">Touch Grass</string>
 
     <string name="fileAuthority">com.example.touchgrass_finalproject</string>
+    <style name="circleImageView" parent="">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">50%</item>
+    </style>
 </resources>
