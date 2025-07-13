@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">TouchGrass_FinalProject</string>
+
+    <string name="fileAuthority">com.example.touchgrass_finalproject</string>
 </resources>
