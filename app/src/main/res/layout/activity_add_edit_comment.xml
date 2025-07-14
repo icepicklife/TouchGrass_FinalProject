@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".AddEditCommentActivity">
+
+    <LinearLayout
+        android:layout_width="413dp"
+        android:layout_height="736dp"
+        android:background="@drawable/grass_background_16by9"
+        android:backgroundTint="#1D2814"
+        android:backgroundTintMode="multiply"
+        android:orientation="vertical"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/CommentQuestionTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="52dp"
+                android:layout_marginTop="132dp"
+                android:background="#86A965"
+                android:fontFamily="@font/poppins_extrabold"
+                android:text="What will you comment?"
+                android:textColor="#243A0D"
+                android:textSize="24sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <EditText
+                android:id="@+id/CommentBoxInput"
+                android:layout_width="286dp"
+                android:layout_height="258dp"
+                android:layout_marginStart="12dp"
+                android:layout_marginTop="40dp"
+                android:background="#385B31"
+                android:backgroundTint="#20311B"
+                android:ems="10"
+                android:fontFamily="@font/poppins"
+                android:hint="Enter Comment Here"
+                android:inputType="text"
+                android:textColor="#7B8E76"
+                app:layout_constraintStart_toStartOf="@+id/CommentQuestionTitle"
+                app:layout_constraintTop_toBottomOf="@+id/CommentQuestionTitle" />
+
+            <ImageButton
+                android:id="@+id/PostButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="28dp"
+                android:layout_marginEnd="52dp"
+                android:backgroundTint="#001A1212"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/CommentBoxInput"
+                app:srcCompat="@drawable/post_button" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
