@@ -62,6 +62,8 @@ public class UserManagementPage extends AppCompatActivity {
         RealmResults<User> list = realm.where(User.class).findAll();
         UserAdapter adapter = new UserAdapter(this, list, true);
         userList.setAdapter(adapter);
+
+        userList.addItemDecoration(new SpaceItemDecoration(16));
     }
 
 
