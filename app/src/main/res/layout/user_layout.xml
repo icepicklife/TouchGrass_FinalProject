@@ -16,7 +16,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textView8" />
 
     <com.google.android.material.imageview.ShapeableImageView
-        android:id="@+id/shapeableImageView2"
+        android:id="@+id/userPhoto"
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:layout_margin="10dp"
@@ -39,7 +39,7 @@
         android:layout_marginStart="12dp"
         android:fontFamily="@font/poppins_medium"
         android:text="Username:"
-        app:layout_constraintStart_toEndOf="@+id/shapeableImageView2"
+        app:layout_constraintStart_toEndOf="@+id/userPhoto"
         app:layout_constraintTop_toBottomOf="@+id/edit" />
 
     <TextView

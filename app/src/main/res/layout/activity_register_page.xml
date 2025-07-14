@@ -50,7 +50,7 @@
         app:layout_constraintEnd_toEndOf="@+id/semitransparentBox"
         app:layout_constraintHorizontal_bias="0.059"
         app:layout_constraintStart_toStartOf="@+id/semitransparentBox"
-        app:layout_constraintTop_toBottomOf="@+id/imageView" />
+        app:layout_constraintTop_toBottomOf="@+id/userPhoto" />
 
     <EditText
         android:id="@+id/editUser2"
@@ -145,18 +145,16 @@
         app:layout_constraintTop_toTopOf="@+id/cancel" />
 
     <com.google.android.material.imageview.ShapeableImageView
-        android:id="@+id/imageView"
+        android:id="@+id/userPhoto"
         android:layout_width="138dp"
         android:layout_height="138dp"
         android:layout_margin="10dp"
         android:padding="5dp"
         android:src="@drawable/ic_launcher_background"
-        app:layout_constraintBottom_toBottomOf="@+id/semitransparentBox"
         app:layout_constraintEnd_toEndOf="@+id/semitransparentBox"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="@+id/semitransparentBox"
         app:layout_constraintTop_toBottomOf="@+id/REGISTERTitle"
-        app:layout_constraintVertical_bias="0.0"
         app:shapeAppearanceOverlay="@style/circleImageView"
         app:strokeColor="#819067"
         app:strokeWidth="5dp" />

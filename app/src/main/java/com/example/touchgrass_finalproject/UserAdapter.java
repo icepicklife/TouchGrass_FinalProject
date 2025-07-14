@@ -6,12 +6,19 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.squareup.picasso.MemoryPolicy;
+import com.squareup.picasso.NetworkPolicy;
+import com.squareup.picasso.Picasso;
+
+import java.io.File;
 
 import io.realm.OrderedRealmCollection;
 import io.realm.RealmRecyclerViewAdapter;
@@ -23,13 +30,14 @@ public class UserAdapter extends RealmRecyclerViewAdapter<User, UserAdapter.View
     public class ViewHolder extends RecyclerView.ViewHolder {
 
         TextView name, password;
-        ImageView delete,edit;
+        ImageView userPhoto, delete, edit;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             name = itemView.findViewById(R.id.nameView);
             password = itemView.findViewById(R.id.passwordView);
             delete = itemView.findViewById(R.id.delete);
             edit = itemView.findViewById(R.id.edit);
+            userPhoto = itemView.findViewById(R.id.userPhoto);
         }
     }
 
@@ -45,7 +53,7 @@ public class UserAdapter extends RealmRecyclerViewAdapter<User, UserAdapter.View
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType)
     {
-        View v = activity.getLayoutInflater().inflate(R.layout.user_layout, parent, false);
+        View v = activity.getLayoutInflater().inflate(R.layout.user_layout, parent, false);  // VERY IMPORTANT TO USE THIS STYLE
         ViewHolder vh = new ViewHolder(v);
         return vh;
     }
@@ -56,6 +64,18 @@ public class UserAdapter extends RealmRecyclerViewAdapter<User, UserAdapter.View
         User u = getItem(position);
         holder.name.setText(u.getName());
         holder.password.setText(u.getPassword());
+
+        File cacheDir = activity.getExternalCacheDir();
+        File photo = new File(cacheDir, u.getUuid()+".jpeg");
+        if (photo.exists())
+        {
+            Picasso.get()
+                    .load(photo)
+                    .networkPolicy(NetworkPolicy.NO_CACHE)
+                    .memoryPolicy(MemoryPolicy.NO_CACHE)
+                    .into(holder.userPhoto);
+        }
+
         holder.edit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -81,5 +101,4 @@ public class UserAdapter extends RealmRecyclerViewAdapter<User, UserAdapter.View
             }
         });
     }
-
 }

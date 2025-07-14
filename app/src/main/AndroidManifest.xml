@@ -20,7 +20,7 @@
     </queries>
 
     <application
-        android:name="com.example.touchgrass_finalproject.MyApp"
+        android:name=".MyApp"
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
@@ -33,7 +33,7 @@
 
         <provider
             android:name="androidx.core.content.FileProvider"
-            android:authorities="@string/fileAuthority"
+            android:authorities="com.example.touchgrass_finalproject"
             android:exported="false"
             android:grantUriPermissions="true">
 
@@ -43,17 +43,18 @@
                 android:resource="@xml/file_provider_path" />
         </provider>
 
+        <activity android:name=".ImageActivity"/>
         <activity
-            android:name="com.example.touchgrass_finalproject.HomePage"
+            android:name=".HomePage"
             android:exported="false" />
         <activity
-            android:name="com.example.touchgrass_finalproject.UserManagementPage"
+            android:name=".UserManagementPage"
             android:exported="false" />
         <activity
-            android:name="com.example.touchgrass_finalproject.RegisterPage"
+            android:name=".RegisterPage"
             android:exported="false" />
         <activity
-            android:name="com.example.touchgrass_finalproject.MainActivity"
+            android:name=".MainActivity"
             android:exported="true" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
