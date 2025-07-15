@@ -89,7 +89,7 @@ public class PostAdapter extends RealmRecyclerViewAdapter<Post, PostAdapter.View
         holder.image.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(activity, RegisterPage.class);
+                Intent intent = new Intent(activity, PostDetailPage.class);
                 intent.putExtra("post_id", post.getUuid());
                 activity.startActivity(intent);
             }
