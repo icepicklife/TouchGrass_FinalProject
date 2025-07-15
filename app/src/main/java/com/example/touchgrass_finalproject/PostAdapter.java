@@ -22,6 +22,7 @@ import java.util.Locale;
 
 import io.realm.OrderedRealmCollection;
 import io.realm.RealmRecyclerViewAdapter;
+import io.realm.RealmResults;
 
 public class PostAdapter extends RealmRecyclerViewAdapter<Post, PostAdapter.ViewHolder> {
 
@@ -60,7 +61,25 @@ public class PostAdapter extends RealmRecyclerViewAdapter<Post, PostAdapter.View
     @Override
     public void onBindViewHolder(@NonNull PostAdapter.ViewHolder holder, int position) {
         Post post = getItem(position);
-        holder.name.setText(post.getUser().getName());
+
+        if(post.getUser() != null) {
+            holder.name.setText(post.getUser().getName());
+
+            if (post.getUser() != null) {
+                File profileImage = new File(activity.getExternalCacheDir(), post.getUser().getUuid() + ".jpeg");
+                if (profileImage.exists()) {
+                    Picasso.get()
+                            .load(profileImage)
+                            .networkPolicy(NetworkPolicy.NO_CACHE)
+                            .memoryPolicy(MemoryPolicy.NO_CACHE)
+                            .into(holder.profilePic);
+                }
+            }
+        } else {
+            holder.name.setText("Deleted User");
+            holder.profilePic.setImageResource(R.drawable.ic_launcher_foreground);
+        }
+
         SimpleDateFormat sdf = new SimpleDateFormat("MMM dd, yyyy hh:mm a", Locale.getDefault());
         holder.date.setText(sdf.format(post.getDate()));
 
@@ -73,17 +92,6 @@ public class PostAdapter extends RealmRecyclerViewAdapter<Post, PostAdapter.View
                     .networkPolicy(NetworkPolicy.NO_CACHE)
                     .memoryPolicy(MemoryPolicy.NO_CACHE)
                     .into(holder.image);
-        }
-
-        if (post.getUser() != null) {
-            File profileImage = new File(activity.getExternalCacheDir(), post.getUser().getUuid() + ".jpeg");
-            if (profileImage.exists()) {
-                Picasso.get()
-                        .load(profileImage)
-                        .networkPolicy(NetworkPolicy.NO_CACHE)
-                        .memoryPolicy(MemoryPolicy.NO_CACHE)
-                        .into(holder.profilePic);
-            }
         }
 
         holder.image.setOnClickListener(new View.OnClickListener() {

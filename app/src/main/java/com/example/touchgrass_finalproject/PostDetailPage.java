@@ -2,6 +2,8 @@ package com.example.touchgrass_finalproject;
 
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -39,6 +41,7 @@ public class PostDetailPage extends AppCompatActivity {
 
     private EditText text;
     private ImageView profilePic, image;
+    private Button edit, delete;
     private TextView date, username;
     private Realm realm;
 
@@ -49,23 +52,37 @@ public class PostDetailPage extends AppCompatActivity {
         image = findViewById(R.id.postDetailImage);
         date = findViewById(R.id.dateOfPost);
         username = findViewById(R.id.usernamePostDetail);
+        edit = findViewById(R.id.editPost);
+        delete = findViewById(R.id.deletePost);
+
+        edit.setOnClickListener(v -> edit());
+        delete.setOnClickListener(v -> delete());
+
         String postId = getIntent().getStringExtra("post_id");
         SimpleDateFormat sdf = new SimpleDateFormat("MMM dd, yyyy hh:mm a", Locale.getDefault());
         if(postId != null){
             Post post = realm.where(Post.class).equalTo("uuid", postId).findFirst();
             if (post != null) {
-                username.setText(post.getUser().getName());
+                User postUser = post.getUser();
+                if (postUser != null){
+                    username.setText(post.getUser().getName());
+                    File profilePhoto = new File(getExternalCacheDir(), post.getUser().getUuid() + ".jpeg");
+                    if (profilePhoto.exists())
+                    {
+                        Picasso.get()
+                                .load(profilePhoto)
+                                .networkPolicy(NetworkPolicy.NO_CACHE)
+                                .memoryPolicy(MemoryPolicy.NO_CACHE)
+                                .into(profilePic);
+                    }
+                }else{
+                    username.setText("Deleted User");
+                    profilePic.setImageResource(R.drawable.ic_launcher_foreground);
+                }
+
                 date.setText(sdf.format(post.getDate()));
                 text.setText(post.getDescription());
-                File profilePhoto = new File(getExternalCacheDir(), post.getUser().getUuid() + ".jpeg");
-                if (profilePhoto.exists())
-                {
-                    Picasso.get()
-                            .load(profilePhoto)
-                            .networkPolicy(NetworkPolicy.NO_CACHE)
-                            .memoryPolicy(MemoryPolicy.NO_CACHE)
-                            .into(profilePic);
-                }
+
                 File photo = new File(getExternalCacheDir(), postId + ".jpeg");
                 if (photo.exists())
                 {
@@ -76,6 +93,26 @@ public class PostDetailPage extends AppCompatActivity {
                             .into(image);
                 }
             }
+
+            SharedPreferences prefs = getSharedPreferences("data", MODE_PRIVATE);
+            String currentUserId = prefs.getString("uuid", null);
+
+            if (currentUserId != null &&  post.getUser() != null && currentUserId.equals(post.getUser().getUuid())) {
+                edit.setVisibility(View.VISIBLE);
+                delete.setVisibility(View.VISIBLE);
+            } else {
+                edit.setVisibility(View.GONE);
+                delete.setVisibility(View.GONE);
+            }
         }
+
+    }
+
+    public void edit(){
+
+    }
+
+    public void delete(){
+
     }
 }
