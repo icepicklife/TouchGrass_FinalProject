@@ -1,5 +1,8 @@
 package com.example.touchgrass_finalproject;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
@@ -44,6 +47,7 @@ public class PostDetailPage extends AppCompatActivity {
     private Button edit, delete;
     private TextView date, username;
     private Realm realm;
+    private String postId;
 
     public void initViews(){
         realm = Realm.getDefaultInstance();
@@ -58,7 +62,7 @@ public class PostDetailPage extends AppCompatActivity {
         edit.setOnClickListener(v -> edit());
         delete.setOnClickListener(v -> delete());
 
-        String postId = getIntent().getStringExtra("post_id");
+        postId = getIntent().getStringExtra("post_id");
         SimpleDateFormat sdf = new SimpleDateFormat("MMM dd, yyyy hh:mm a", Locale.getDefault());
         if(postId != null){
             Post post = realm.where(Post.class).equalTo("uuid", postId).findFirst();
@@ -109,10 +113,28 @@ public class PostDetailPage extends AppCompatActivity {
     }
 
     public void edit(){
-
+        Intent intent = new Intent(this, NewPostPage.class);
+        intent.putExtra("post_id", postId);
+        startActivity(intent);
     }
 
     public void delete(){
-
+        new AlertDialog.Builder(this)
+                    .setTitle("Delete Post")
+                    .setMessage("Are you sure you want to delete this Post?")
+                    .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int which) {
+                            if(postId != null) {
+                                Post post = realm.where(Post.class).equalTo("uuid", postId).findFirst();
+                                realm.beginTransaction();
+                                post.deleteFromRealm();
+                                realm.commitTransaction();
+                            }
+                            finish();
+                        }
+                    })
+                    .setNegativeButton(android.R.string.cancel, null)
+                    .setIconAttribute(android.R.attr.alertDialogIcon)
+                    .show();
     }
 }
