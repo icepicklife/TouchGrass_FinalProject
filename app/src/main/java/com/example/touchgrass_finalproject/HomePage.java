@@ -17,6 +17,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import io.realm.Realm;
 import io.realm.RealmResults;
+import io.realm.Sort;
 
 public class HomePage extends AppCompatActivity {
 
@@ -63,9 +64,10 @@ public class HomePage extends AppCompatActivity {
         mLayoutManager.setOrientation(RecyclerView.VERTICAL);
         postList.setLayoutManager(mLayoutManager);
 
-        RealmResults<Post> list = realm.where(Post.class).findAll();
+        RealmResults<Post> list = realm.where(Post.class).sort("date", Sort.DESCENDING).findAll();
         PostAdapter adapter = new PostAdapter(this, list, true);
         postList.setAdapter(adapter);
+
     }
 
     public void addPost(){

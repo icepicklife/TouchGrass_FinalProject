@@ -85,6 +85,8 @@ public class NewPostPage extends AppCompatActivity {
     private Realm realm;
     private Post postDetail;
     private String imageUuid;
+    private String originalDescription = "";
+    private boolean imageChanged, isEditing, isEdited = false;
 
     public void initViews(){
         realm = Realm.getDefaultInstance();
@@ -97,9 +99,11 @@ public class NewPostPage extends AppCompatActivity {
         home = findViewById(R.id.homeButton);
 
         if(postId!=null) {
-            Post posts = realm.where(Post.class).equalTo("uuid",postId).findFirst();
-            if(posts!=null) {
-                description.setText(posts.getDescription());
+            postDetail = realm.where(Post.class).equalTo("uuid",postId).findFirst();
+            if(postDetail!=null) {
+                isEditing = true;
+                description.setText(postDetail.getDescription());
+                originalDescription = postDetail.getDescription();
                 title.setText("EDIT");
                 imageUuid = postId;
                 File imageFile = new File(getExternalCacheDir(), imageUuid + ".jpeg");
@@ -148,10 +152,19 @@ public class NewPostPage extends AppCompatActivity {
         postDetail.setDescription(text);
         postDetail.setDate(new Date());
         postDetail.setUser(currentUser);
-        realm.copyToRealm(postDetail);
+        realm.copyToRealmOrUpdate(postDetail);
+
+        if (!text.equals(originalDescription) || imageChanged) {
+            isEdited = true;
+        }
 
         realm.commitTransaction();
         Toast.makeText(this, "Post saved", Toast.LENGTH_SHORT).show();
+        Intent intent = new Intent(this, PostDetailPage.class);
+        intent.putExtra("post_id", postDetail.getUuid());
+        intent.putExtra("edited",isEdited);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        startActivity(intent);
         finish();
     }
     public static int REQUEST_CODE_IMAGE_SCREEN = 0;
@@ -181,6 +194,9 @@ public class NewPostPage extends AppCompatActivity {
                     File savedImage = saveFile(jpeg, imageUuid+".jpeg");  // WHERE TO SAVE
 
                     refreshImageView(image, savedImage);
+                    if (isEditing) {
+                        imageChanged = true;
+                    }
                 }
                 catch(Exception e)
                 {

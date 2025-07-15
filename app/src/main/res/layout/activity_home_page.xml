@@ -17,8 +17,8 @@
       android:contentDescription="@null"
       android:scaleType="centerCrop"
       android:src="@drawable/beautifulgrass"
-      tools:layout_editor_absoluteX="16dp"
-      tools:layout_editor_absoluteY="-46dp" />
+      tools:layout_editor_absoluteX="0dp"
+      tools:layout_editor_absoluteY="51dp" />
 
   <ImageView
       android:id="@+id/imageView3"
@@ -37,7 +37,7 @@
   <TextView
       android:id="@+id/welcome"
       android:layout_width="0dp"
-      android:layout_height="wrap_content"
+      android:layout_height="51dp"
       android:layout_marginStart="16dp"
       android:layout_marginTop="4dp"
       android:layout_marginEnd="16dp"
@@ -59,17 +59,17 @@
       android:id="@+id/textView10"
       android:layout_width="0dp"
       android:layout_height="wrap_content"
-      android:layout_marginTop="8dp"
       android:layout_marginStart="16dp"
+      android:layout_marginTop="8dp"
       android:layout_marginEnd="16dp"
       android:fontFamily="@font/poppins_black"
       android:text="Go Touch Grass,"
       android:textAlignment="center"
       android:textColor="#0A400C"
       android:textSize="24sp"
-      app:layout_constraintTop_toTopOf="@id/imageView3"
+      app:layout_constraintEnd_toEndOf="@id/imageView3"
       app:layout_constraintStart_toStartOf="@id/imageView3"
-      app:layout_constraintEnd_toEndOf="@id/imageView3" />
+      app:layout_constraintTop_toTopOf="@id/imageView3" />
 
   <ImageView
       android:id="@+id/imageView2"
@@ -81,24 +81,33 @@
       app:layout_constraintBottom_toBottomOf="parent"
       app:layout_constraintHeight_percent="0.08" />
 
+  <androidx.recyclerview.widget.RecyclerView
+      android:id="@+id/postList"
+      android:layout_width="0dp"
+      android:layout_height="0dp"
+      app:layout_constraintBottom_toTopOf="@+id/imageView2"
+      app:layout_constraintEnd_toStartOf="@+id/space4"
+      app:layout_constraintHorizontal_bias="0.0"
+      app:layout_constraintStart_toEndOf="@+id/space5"
+      app:layout_constraintTop_toBottomOf="@+id/space7"
+      app:layout_constraintVertical_bias="1.0" />
+
   <ImageView
       android:id="@+id/addButton"
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
-      android:layout_marginStart="60dp"
-      android:layout_marginBottom="4dp"
-      app:layout_constraintBottom_toBottomOf="@+id/homeButton"
-      app:layout_constraintEnd_toStartOf="@+id/profileButton"
-      app:layout_constraintHorizontal_bias="0.033"
-      app:layout_constraintStart_toEndOf="@+id/homeButton"
+      android:layout_marginBottom="16dp"
+      app:layout_constraintBottom_toBottomOf="parent"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintEnd_toEndOf="parent"
       app:srcCompat="@drawable/add" />
 
   <ImageView
       android:id="@+id/homeButton"
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
-      android:layout_marginStart="64dp"
-      android:layout_marginTop="4dp"
+      android:layout_marginTop="8dp"
+      app:layout_constraintEnd_toStartOf="@+id/addButton"
       app:layout_constraintStart_toStartOf="@+id/imageView2"
       app:layout_constraintTop_toTopOf="@+id/imageView2"
       app:srcCompat="@drawable/home" />
@@ -107,28 +116,50 @@
       android:id="@+id/profileButton"
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
-      android:layout_marginEnd="60dp"
-      app:layout_constraintBottom_toBottomOf="@+id/addButton"
-      app:layout_constraintEnd_toEndOf="@+id/imageView2"
-      app:layout_constraintTop_toTopOf="@+id/imageView2"
-      app:layout_constraintVertical_bias="1.0"
-      app:srcCompat="@drawable/profile_img" />
-
-  <androidx.recyclerview.widget.RecyclerView
-      android:id="@+id/postList"
-      android:layout_width="360dp"
-      android:layout_height="541dp"
-      app:layout_constraintBottom_toTopOf="@+id/imageView2"
+      app:layout_constraintBottom_toBottomOf="@+id/homeButton"
       app:layout_constraintEnd_toEndOf="parent"
-      app:layout_constraintStart_toStartOf="@+id/backgroundImage"
-      app:layout_constraintTop_toBottomOf="@+id/imageView3" />
+      app:layout_constraintStart_toEndOf="@+id/addButton"
+      app:layout_constraintTop_toTopOf="@+id/homeButton"
+      app:srcCompat="@drawable/profile_img" />
 
   <Button
       android:id="@+id/logOut"
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
+      android:layout_width="90dp"
+      android:layout_height="38dp"
+      android:layout_marginEnd="8dp"
+      android:backgroundTint="#B1AB86"
+      android:fontFamily="@font/poppins_medium"
       android:text="Log Out"
+      android:textColor="#FEFAE0"
+      android:textSize="10sp"
+      app:layout_constraintBottom_toTopOf="@+id/welcome"
       app:layout_constraintEnd_toEndOf="parent"
-      app:layout_constraintTop_toTopOf="parent" />
+      app:layout_constraintTop_toTopOf="parent"
+      app:layout_constraintVertical_bias="0.0" />
+
+  <Space
+      android:id="@+id/space5"
+      android:layout_width="28dp"
+      android:layout_height="0dp"
+      app:layout_constraintBottom_toTopOf="@+id/imageView2"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toBottomOf="@+id/imageView3"
+      app:layout_constraintVertical_bias="1.0" />
+
+  <Space
+      android:id="@+id/space4"
+      android:layout_width="28dp"
+      android:layout_height="0dp"
+      app:layout_constraintBottom_toTopOf="@+id/imageView2"
+      app:layout_constraintEnd_toEndOf="@+id/backgroundImage"
+      app:layout_constraintTop_toBottomOf="@+id/imageView3" />
+
+  <Space
+      android:id="@+id/space7"
+      android:layout_width="0dp"
+      android:layout_height="10dp"
+      app:layout_constraintEnd_toEndOf="@+id/postList"
+      app:layout_constraintStart_toStartOf="@+id/postList"
+      app:layout_constraintTop_toBottomOf="@+id/imageView3" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

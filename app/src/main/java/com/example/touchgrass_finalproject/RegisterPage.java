@@ -176,7 +176,7 @@ public class RegisterPage extends AppCompatActivity {
             }
             newUser.setName(name);
             newUser.setPassword(password);
-            realm.copyToRealm(newUser);
+            realm.copyToRealmOrUpdate(newUser);
             long totalCount = realm.where(User.class).count();
             Toast.makeText(this, "Saved. Total users: " + totalCount, Toast.LENGTH_LONG).show();
         }

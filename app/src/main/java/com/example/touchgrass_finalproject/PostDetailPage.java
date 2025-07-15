@@ -45,12 +45,14 @@ public class PostDetailPage extends AppCompatActivity {
     private EditText text;
     private ImageView profilePic, image, home, add, returnPost;
     private Button edit, delete;
-    private TextView date, username;
+    private TextView date, username, edited;
     private Realm realm;
     private String postId;
+    private Boolean isEdited = false;
 
     public void initViews(){
         realm = Realm.getDefaultInstance();
+        isEdited = getIntent().getBooleanExtra("edited",false);
         text = findViewById(R.id.my_edit_text);
         profilePic = findViewById(R.id.profilePicDetail);
         image = findViewById(R.id.postDetailImage);
@@ -61,6 +63,12 @@ public class PostDetailPage extends AppCompatActivity {
         home = findViewById(R.id.homeButton);
         add = findViewById(R.id.addButton);
         returnPost = findViewById(R.id.goBackReturn);
+        edited = findViewById(R.id.edited);
+        edited.setText("");
+
+        if(isEdited){
+            edited.setText("(edited)");
+        }
 
         edit.setOnClickListener(v -> edit());
         delete.setOnClickListener(v -> delete());

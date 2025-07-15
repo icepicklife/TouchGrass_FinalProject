@@ -10,79 +10,114 @@
 
     <Button
         android:id="@+id/deletePost"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="98dp"
+        android:layout_height="48dp"
+        android:layout_marginEnd="16dp"
+        android:backgroundTint="#B1AB86"
+        android:fontFamily="@font/poppins_medium"
         android:text="Delete"
+        android:textColor="#0A400C"
+        android:textSize="12sp"
         app:layout_constraintBottom_toTopOf="@+id/postDetailImage"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.942"
-        app:layout_constraintStart_toEndOf="@+id/goBackReturn"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.19" />
+        app:layout_constraintVertical_bias="0.39" />
 
-    <ImageView
-        android:id="@+id/profilePicDetail"
-        android:layout_width="73dp"
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardView2"
+        android:layout_width="63dp"
         android:layout_height="63dp"
-        android:layout_marginTop="48dp"
-        app:layout_constraintEnd_toStartOf="@+id/usernamePostDetail"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/goBackReturn"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/ic_launcher_foreground" />
+        android:layout_marginTop="8dp"
+        app:cardBackgroundColor="@android:color/transparent"
+        app:cardCornerRadius="45dp"
+        app:layout_constraintStart_toEndOf="@+id/space"
+        app:layout_constraintTop_toBottomOf="@+id/postDetailImage">
+
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/profilePicDetail"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="centerCrop"
+            android:src="@drawable/ic_launcher_foreground"
+            app:shapeAppearanceOverlay="@style/circleImageView"
+            app:strokeColor="#819067"
+            app:strokeWidth="5dp" />
+    </androidx.cardview.widget.CardView>
 
     <TextView
         android:id="@+id/usernamePostDetail"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="148dp"
-        android:text="TextView"
-        app:layout_constraintEnd_toStartOf="@+id/deletePost"
-        app:layout_constraintTop_toTopOf="@+id/profilePicDetail" />
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="20dp"
+        android:fontFamily="@font/poppins_bold"
+        android:text="user"
+        android:textColor="@color/black"
+        android:textSize="12sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toEndOf="@+id/cardView2"
+        app:layout_constraintTop_toTopOf="@+id/cardView2" />
 
     <TextView
         android:id="@+id/dateOfPost"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="TextView"
+        android:fontFamily="@font/poppins_medium"
+        android:text="date"
+        android:textColor="@color/black"
+        android:textSize="10sp"
         app:layout_constraintStart_toStartOf="@+id/usernamePostDetail"
         app:layout_constraintTop_toBottomOf="@+id/usernamePostDetail" />
 
     <ImageView
         android:id="@+id/postDetailImage"
         android:layout_width="0dp"
-        android:layout_height="300dp"
-        android:layout_marginTop="4dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/profilePicDetail"
+        android:layout_height="0dp"
+        android:layout_marginTop="16dp"
+        android:scaleType="fitCenter"
+        app:layout_constraintEnd_toStartOf="@+id/space2"
+        app:layout_constraintHorizontal_bias="0.323"
+        app:layout_constraintHeight_percent="0.5"
+        app:layout_constraintStart_toEndOf="@+id/space"
+        app:layout_constraintTop_toBottomOf="@+id/goBackReturn"
         app:srcCompat="@drawable/ic_launcher_background" />
 
     <EditText
         android:id="@+id/my_edit_text"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_width="353dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
         android:background="@android:color/transparent"
         android:clickable="false"
         android:focusable="false"
+        android:fontFamily="@font/poppins_medium"
+        android:gravity="top|left"
         android:inputType="textMultiLine"
         android:scrollbars="vertical"
-        android:text="lorem ipsum dolor sit amet, consectetur adipiscing elit. vivamus vel odio vitae lorem elementum ullamcorper. class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. integer ultrices tempus sodales. donec tincidunt erat vel egestas faucibus. pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas."
-        app:layout_constraintBottom_toTopOf="@+id/addButton"
+        android:text="text"
+        android:textAlignment="viewStart"
+        android:textColor="@color/black"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toTopOf="@+id/editPost"
         app:layout_constraintEnd_toStartOf="@+id/space2"
-        app:layout_constraintStart_toEndOf="@+id/space"
-        app:layout_constraintTop_toBottomOf="@+id/comments"
-        app:layout_constraintVertical_bias="0.687" />
+        app:layout_constraintStart_toStartOf="@+id/cardView2"
+        app:layout_constraintTop_toBottomOf="@+id/cardView2"
+        app:layout_constraintVertical_bias="1.0" />
 
     <Button
         android:id="@+id/editPost"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="85dp"
+        android:layout_height="48dp"
+        android:layout_marginBottom="8dp"
+        android:backgroundTint="#819067"
+        android:fontFamily="@font/poppins_medium"
         android:text="Edit"
+        android:textColor="#FFFFFF"
+        android:textSize="12sp"
         app:layout_constraintBottom_toTopOf="@+id/imageView2"
-        app:layout_constraintEnd_toEndOf="@+id/my_edit_text"
+        app:layout_constraintEnd_toStartOf="@+id/space2"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toEndOf="@+id/addButton" />
 
     <ImageView
@@ -93,18 +128,16 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHeight_percent="0.08" />
+        app:layout_constraintHeight_percent="0.08"/>
 
     <ImageView
         android:id="@+id/addButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="60dp"
-        android:layout_marginBottom="4dp"
-        app:layout_constraintBottom_toBottomOf="@+id/homeButton"
-        app:layout_constraintEnd_toStartOf="@+id/profileButton"
-        app:layout_constraintHorizontal_bias="0.033"
-        app:layout_constraintStart_toEndOf="@+id/homeButton"
+        android:layout_marginBottom="16dp"
+        app:layout_constraintBottom_toBottomOf="@+id/imageView2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/imageView2"
         app:srcCompat="@drawable/add" />
 
     <ImageView
@@ -112,7 +145,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="64dp"
-        android:layout_marginTop="4dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintEnd_toStartOf="@+id/addButton"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/imageView2"
         app:layout_constraintTop_toTopOf="@+id/imageView2"
         app:srcCompat="@drawable/home" />
@@ -124,64 +159,65 @@
         android:layout_marginEnd="64dp"
         app:layout_constraintBottom_toBottomOf="@+id/addButton"
         app:layout_constraintEnd_toEndOf="@+id/imageView2"
-        app:layout_constraintTop_toTopOf="@+id/imageView2"
-        app:layout_constraintVertical_bias="0.0"
+        app:layout_constraintHorizontal_bias="0.907"
+        app:layout_constraintStart_toEndOf="@+id/addButton"
+        app:layout_constraintTop_toTopOf="@+id/homeButton"
+        app:layout_constraintVertical_bias="0.285"
         app:srcCompat="@drawable/profile_img" />
-
-    <ImageView
-        android:id="@+id/hearts"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="4dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/postDetailImage"
-        app:srcCompat="@drawable/heart" />
 
     <ImageView
         android:id="@+id/comments"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        app:layout_constraintStart_toEndOf="@+id/hearts"
-        app:layout_constraintTop_toTopOf="@+id/hearts"
+        app:layout_constraintEnd_toStartOf="@+id/savePost"
+        app:layout_constraintTop_toTopOf="@+id/savePost"
         app:srcCompat="@drawable/comment" />
 
     <ImageView
         android:id="@+id/savePost"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="16dp"
-        app:layout_constraintBottom_toBottomOf="@+id/comments"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/comments"
-        app:layout_constraintVertical_bias="1.0"
+        android:layout_marginTop="12dp"
+        app:layout_constraintEnd_toStartOf="@+id/space2"
+        app:layout_constraintTop_toBottomOf="@+id/postDetailImage"
         app:srcCompat="@drawable/post_collections" />
-
-    <Space
-        android:id="@+id/space"
-        android:layout_width="28dp"
-        android:layout_height="293dp"
-        app:layout_constraintStart_toStartOf="@+id/postDetailImage"
-        app:layout_constraintTop_toBottomOf="@+id/postDetailImage" />
-
-    <Space
-        android:id="@+id/space2"
-        android:layout_width="28dp"
-        android:layout_height="290dp"
-        app:layout_constraintBottom_toBottomOf="@+id/editPost"
-        app:layout_constraintEnd_toEndOf="@+id/postDetailImage"
-        app:layout_constraintTop_toBottomOf="@+id/postDetailImage" />
 
     <ImageView
         android:id="@+id/goBackReturn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="12dp"
-        app:layout_constraintBottom_toTopOf="@+id/profilePicDetail"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0"
         app:srcCompat="@android:drawable/ic_menu_revert" />
+
+    <Space
+        android:id="@+id/space"
+        android:layout_width="28dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@+id/imageView2"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/goBackReturn" />
+
+    <Space
+        android:id="@+id/space2"
+        android:layout_width="28dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@+id/imageView2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/deletePost" />
+
+    <TextView
+        android:id="@+id/edited"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:text="(edited)"
+        android:textColor="@color/black"
+        android:textSize="10sp"
+        android:textStyle="italic"
+        app:layout_constraintStart_toEndOf="@+id/dateOfPost"
+        app:layout_constraintTop_toBottomOf="@+id/usernamePostDetail" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
