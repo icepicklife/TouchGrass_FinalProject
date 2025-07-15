@@ -21,8 +21,6 @@ public class SpaceItemDecoration extends RecyclerView.ItemDecoration {
             @NonNull RecyclerView.State state
     ) {
         outRect.bottom = space;
-
-        // Optional: Add spacing to top only for the first item
         if (parent.getChildAdapterPosition(view) == 0) {
             outRect.top = space;
         }

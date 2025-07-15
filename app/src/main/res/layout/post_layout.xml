@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <View
+            android:id="@+id/semitransparentBox"
+            android:layout_width="399dp"
+            android:layout_height="261dp"
+            android:background="@drawable/rectanglebackground"
+            android:backgroundTint="#CFDBBA"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/profilePic"
+            android:layout_width="35dp"
+            android:layout_height="30dp"
+            android:layout_marginTop="16dp"
+            app:layout_constraintStart_toStartOf="@+id/imagePosted"
+            app:layout_constraintTop_toTopOf="@+id/usernamePost"
+            app:srcCompat="@drawable/ic_launcher_foreground" />
+
+        <ImageView
+            android:id="@+id/imagePosted"
+            android:layout_width="365dp"
+            android:layout_height="195dp"
+            app:layout_constraintBottom_toBottomOf="@+id/semitransparentBox"
+            app:layout_constraintEnd_toEndOf="@+id/semitransparentBox"
+            app:layout_constraintStart_toStartOf="@+id/semitransparentBox"
+            app:layout_constraintTop_toBottomOf="@+id/profilePic"
+            app:layout_constraintVertical_bias="0.0"
+            app:srcCompat="@drawable/ic_launcher_background" />
+
+        <TextView
+            android:id="@+id/usernamePost"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="TextView"
+            app:layout_constraintStart_toEndOf="@+id/profilePic"
+            app:layout_constraintTop_toTopOf="@+id/semitransparentBox" />
+
+        <TextView
+            android:id="@+id/datePosted"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="TextView"
+            app:layout_constraintBottom_toTopOf="@+id/imagePosted"
+            app:layout_constraintStart_toStartOf="@+id/usernamePost"
+            app:layout_constraintTop_toBottomOf="@+id/usernamePost" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</LinearLayout>

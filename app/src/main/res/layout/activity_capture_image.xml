@@ -11,7 +11,7 @@
     android:layout_margin="10dp"
 
 
-    android:background="@drawable/grass_background">
+    android:background="@drawable/beautifulgrass">
 
 
     <LinearLayout
