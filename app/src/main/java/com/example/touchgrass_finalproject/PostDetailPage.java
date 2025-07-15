@@ -43,7 +43,7 @@ public class PostDetailPage extends AppCompatActivity {
     }
 
     private EditText text;
-    private ImageView profilePic, image;
+    private ImageView profilePic, image, home, add, returnPost;
     private Button edit, delete;
     private TextView date, username;
     private Realm realm;
@@ -58,9 +58,15 @@ public class PostDetailPage extends AppCompatActivity {
         username = findViewById(R.id.usernamePostDetail);
         edit = findViewById(R.id.editPost);
         delete = findViewById(R.id.deletePost);
+        home = findViewById(R.id.homeButton);
+        add = findViewById(R.id.addButton);
+        returnPost = findViewById(R.id.goBackReturn);
 
         edit.setOnClickListener(v -> edit());
         delete.setOnClickListener(v -> delete());
+        home.setOnClickListener(v -> home());
+        add.setOnClickListener(v -> add());
+        returnPost.setOnClickListener(v -> returnPost());
 
         postId = getIntent().getStringExtra("post_id");
         SimpleDateFormat sdf = new SimpleDateFormat("MMM dd, yyyy hh:mm a", Locale.getDefault());
@@ -110,6 +116,22 @@ public class PostDetailPage extends AppCompatActivity {
             }
         }
 
+    }
+
+    public void returnPost(){
+        finish();
+    }
+
+    public void home(){
+        Intent intent = new Intent(this, HomePage.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        startActivity(intent);
+        finish();
+    }
+
+    public void add(){
+        Intent intent = new Intent(this, NewPostPage.class);
+        startActivity(intent);
     }
 
     public void edit(){

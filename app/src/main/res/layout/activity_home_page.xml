@@ -123,4 +123,12 @@
       app:layout_constraintStart_toStartOf="@+id/backgroundImage"
       app:layout_constraintTop_toBottomOf="@+id/imageView3" />
 
+  <Button
+      android:id="@+id/logOut"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:text="Log Out"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintTop_toTopOf="parent" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

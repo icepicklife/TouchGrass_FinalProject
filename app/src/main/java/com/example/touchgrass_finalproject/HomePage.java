@@ -3,6 +3,7 @@ package com.example.touchgrass_finalproject;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -34,14 +35,18 @@ public class HomePage extends AppCompatActivity {
 
     private TextView welcome;
     private Realm realm;
-    private ImageView add;
+    private ImageView add, refresh;
     RecyclerView postList;
+    private Button logOut;
+
 
     public void initViews(){
         realm = Realm.getDefaultInstance();
         welcome=findViewById(R.id.welcome);
         add=findViewById(R.id.addButton);
         postList=findViewById(R.id.postList);
+        logOut=findViewById(R.id.logOut);
+        refresh=findViewById(R.id.homeButton);
 
         SharedPreferences prefs = getSharedPreferences("data", MODE_PRIVATE);
         String uuid = prefs.getString("uuid",null);
@@ -51,6 +56,8 @@ public class HomePage extends AppCompatActivity {
 
         welcome.setText(userID.getName() + "!");
         add.setOnClickListener(v -> addPost());
+        logOut.setOnClickListener(v -> logOut());
+        refresh.setOnClickListener(v -> refresh());
 
         LinearLayoutManager mLayoutManager = new LinearLayoutManager(this);
         mLayoutManager.setOrientation(RecyclerView.VERTICAL);
@@ -64,5 +71,19 @@ public class HomePage extends AppCompatActivity {
     public void addPost(){
         Intent intent = new Intent(this, NewPostPage.class);
         startActivity(intent);
+    }
+
+    public void logOut(){
+        Intent intent = new Intent(this, MainActivity.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        startActivity(intent);
+        finish();
+    }
+
+    public void refresh(){
+        Intent intent = new Intent(this, HomePage.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        startActivity(intent);
+        finish();
     }
 }

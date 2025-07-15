@@ -80,11 +80,11 @@ public class NewPostPage extends AppCompatActivity {
 
     private EditText description;
     private Button post;
-    private ImageView image, cancel;
+    private ImageView image, cancel, home;
     private TextView title;
     private Realm realm;
     private Post postDetail;
-    private String imageUuid, username;
+    private String imageUuid;
 
     public void initViews(){
         realm = Realm.getDefaultInstance();
@@ -94,6 +94,7 @@ public class NewPostPage extends AppCompatActivity {
         image = findViewById(R.id.imagePost);
         title = findViewById(R.id.postTitle);
         cancel = findViewById(R.id.cancelPost);
+        home = findViewById(R.id.homeButton);
 
         if(postId!=null) {
             Post posts = realm.where(Post.class).equalTo("uuid",postId).findFirst();
@@ -114,6 +115,13 @@ public class NewPostPage extends AppCompatActivity {
         post.setOnClickListener(v -> post());
         image.setOnClickListener(v -> takePhoto());
         cancel.setOnClickListener(v -> cancel());
+        home.setOnClickListener(v -> home());
+    }
+    public void home(){
+        Intent intent = new Intent(this, HomePage.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        startActivity(intent);
+        finish();
     }
 
     public void post(){
