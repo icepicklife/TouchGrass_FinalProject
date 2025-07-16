@@ -28,7 +28,6 @@
         android:layout_width="63dp"
         android:layout_height="63dp"
         android:layout_marginTop="8dp"
-        app:cardBackgroundColor="@android:color/transparent"
         app:cardCornerRadius="45dp"
         app:layout_constraintStart_toEndOf="@+id/space"
         app:layout_constraintTop_toBottomOf="@+id/postDetailImage">
