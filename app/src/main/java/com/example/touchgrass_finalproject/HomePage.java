@@ -67,7 +67,8 @@ public class HomePage extends AppCompatActivity {
         RealmResults<Post> list = realm.where(Post.class).sort("date", Sort.DESCENDING).findAll();
         PostAdapter adapter = new PostAdapter(this, list, true);
         postList.setAdapter(adapter);
-
+        int spacingInPixels = 20;
+        postList.addItemDecoration(new SpaceItemDecoration(spacingInPixels));
     }
 
     public void addPost(){

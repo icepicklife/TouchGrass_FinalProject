@@ -96,7 +96,6 @@
         android:inputType="textMultiLine"
         android:scrollbars="vertical"
         android:text="text"
-        android:textAlignment="viewStart"
         android:textColor="@color/black"
         android:textSize="14sp"
         app:layout_constraintBottom_toTopOf="@+id/editPost"
