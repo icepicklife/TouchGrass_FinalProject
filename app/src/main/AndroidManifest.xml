@@ -31,6 +31,12 @@
         android:theme="@style/Theme.TouchGrass_FinalProject"
         tools:targetApi="31">
         <activity
+            android:name=".AddEditCommentActivity"
+            android:exported="false" />
+        <activity
+            android:name=".PostCommentScreenActivity"
+            android:exported="false" />
+        <activity
             android:name=".DailyPost"
             android:exported="false" />
         <activity
