@@ -128,6 +128,11 @@ public class PostDetailPage extends AppCompatActivity {
                 edit.setVisibility(View.GONE);
                 delete.setVisibility(View.GONE);
             }
+
+            User currentUser = realm.where(User.class).equalTo("uuid", currentUserId).findFirst();
+            if (currentUser != null) {
+                updateSaveIcon(currentUser, post);
+            }
         }
 
     }
@@ -199,6 +204,7 @@ public class PostDetailPage extends AppCompatActivity {
                                 user.getSavedPosts().add(post);
                                 Toast.makeText(this, "Post saved!", Toast.LENGTH_SHORT).show();
                             }
+                            updateSaveIcon(user, post);
                         });
                     }
                 }
@@ -206,5 +212,11 @@ public class PostDetailPage extends AppCompatActivity {
         }
     }
 
-
+    private void updateSaveIcon(User user, Post post) {
+        if (user.getSavedPosts().contains(post)) {
+            save.setImageResource(R.drawable.saved_photo);
+        } else {
+            save.setImageResource(R.drawable.unsaved_photo);
+        }
+    }
 }

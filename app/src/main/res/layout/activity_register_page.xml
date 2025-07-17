@@ -51,7 +51,7 @@
         app:layout_constraintEnd_toEndOf="@+id/semitransparentBox"
         app:layout_constraintHorizontal_bias="0.059"
         app:layout_constraintStart_toStartOf="@+id/semitransparentBox"
-        app:layout_constraintTop_toBottomOf="@+id/cardView1" />
+        app:layout_constraintTop_toBottomOf="@+id/cardView7" />
 
     <EditText
         android:id="@+id/editUser2"
@@ -146,7 +146,7 @@
         app:layout_constraintTop_toTopOf="@+id/cancel" />
 
     <androidx.cardview.widget.CardView
-        android:id="@+id/cardView1"
+        android:id="@+id/cardView7"
         android:layout_width="150dp"
         android:layout_height="150dp"
         android:layout_marginStart="4dp"

@@ -178,7 +178,7 @@
         android:layout_marginTop="12dp"
         app:layout_constraintEnd_toStartOf="@+id/space2"
         app:layout_constraintTop_toBottomOf="@+id/postDetailImage"
-        app:srcCompat="@drawable/post_collections" />
+        app:srcCompat="@drawable/unsaved_photo" />
 
     <ImageView
         android:id="@+id/goBackReturn"

@@ -28,6 +28,7 @@ public class ProfileActivity extends AppCompatActivity {
 
     private Realm realm;
     private User currentUser;
+    private String currentUuid;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,6 +48,8 @@ public class ProfileActivity extends AppCompatActivity {
         returnPost = findViewById(R.id.goBackReturn);
         calendarView = findViewById(R.id.calendarView);
         editProfileButton = findViewById(R.id.editProfileButton);
+        SharedPreferences prefs = getSharedPreferences("data", MODE_PRIVATE);
+        currentUuid = prefs.getString("uuid", null);
 
         savedPostsBtn.setOnClickListener(v -> {
             Intent intent = new Intent(ProfileActivity.this, SavedPosts.class);
@@ -54,7 +57,8 @@ public class ProfileActivity extends AppCompatActivity {
         });
 
         editProfileButton.setOnClickListener(v -> {
-            Intent intent = new Intent(ProfileActivity.this, EditProfile.class);
+            Intent intent = new Intent(ProfileActivity.this, RegisterPage.class);
+            intent.putExtra("user_id", currentUuid);
             startActivity(intent);
         });
 
@@ -91,7 +95,7 @@ public class ProfileActivity extends AppCompatActivity {
                             .memoryPolicy(MemoryPolicy.NO_CACHE)
                             .into(profilePic);
                 } else {
-                    profilePic.setImageResource(R.drawable.ic_launcher_foreground);
+                    profilePic.setImageResource(R.drawable.ic_launcher_background);
                 }
             }
         }
