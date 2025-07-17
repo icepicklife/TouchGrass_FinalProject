@@ -180,7 +180,7 @@ public class PostDetailPage extends AppCompatActivity {
                         }
                     })
                     .setNegativeButton(android.R.string.cancel, null)
-                    .setIconAttribute(android.R.attr.alertDialogIcon)
+                    .setIcon(android.R.drawable.ic_delete)
                     .show();
     }
 

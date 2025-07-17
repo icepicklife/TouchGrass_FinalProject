@@ -1,5 +1,7 @@
 package com.example.touchgrass_finalproject;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
@@ -74,12 +76,22 @@ public class UserManagementPage extends AppCompatActivity {
 
 
     public void clear(){
-        RealmResults<User> results = realm.where(User.class).findAll();
-        realm.beginTransaction();
-        for (User user:results){
-            user.deleteFromRealm();
-        }
-        realm.commitTransaction();
+        new AlertDialog.Builder(this)
+                .setTitle("Clear all users.")
+                .setMessage("Are you sure you want to clear all users?")
+                .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        RealmResults<User> results = realm.where(User.class).findAll();
+                        realm.beginTransaction();
+                        for (User user:results){
+                            user.deleteFromRealm();
+                        }
+                        realm.commitTransaction();
+                    }
+                })
+                .setNegativeButton(android.R.string.cancel, null)
+                .setIconAttribute(android.R.attr.alertDialogIcon)
+                .show();
     }
 
 
