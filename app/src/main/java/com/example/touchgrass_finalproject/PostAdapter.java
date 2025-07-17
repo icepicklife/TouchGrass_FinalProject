@@ -58,7 +58,6 @@ public class PostAdapter extends RealmRecyclerViewAdapter<Post, PostAdapter.View
 
         if (post == null) return;
 
-        // Set name
         if (post.getUser() != null) {
             holder.name.setText(post.getUser().getName());
             File profileImage = new File(context.getExternalCacheDir(), post.getUser().getUuid() + ".jpeg");
@@ -74,11 +73,9 @@ public class PostAdapter extends RealmRecyclerViewAdapter<Post, PostAdapter.View
             holder.profilePic.setImageResource(R.drawable.ic_launcher_foreground);
         }
 
-        // Set date
         SimpleDateFormat sdf = new SimpleDateFormat("MMM dd, yyyy hh:mm a", Locale.getDefault());
         holder.date.setText(sdf.format(post.getDate()));
 
-        // Set post image
         File photo = new File(context.getExternalCacheDir(), post.getUuid() + ".jpeg");
         if (photo.exists()) {
             Picasso.get()
@@ -88,7 +85,6 @@ public class PostAdapter extends RealmRecyclerViewAdapter<Post, PostAdapter.View
                     .into(holder.image);
         }
 
-        // 🔥 Set click listener on the WHOLE ITEM, not just image
         holder.itemView.setOnClickListener(v -> {
             Intent intent = new Intent(context, PostDetailPage.class);
             intent.putExtra("post_id", post.getUuid());
