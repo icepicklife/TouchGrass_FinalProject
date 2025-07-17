@@ -30,6 +30,18 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.TouchGrass_FinalProject"
         tools:targetApi="31">
+        <activity
+            android:name=".EditProfile"
+            android:exported="false" />
+        <activity
+            android:name=".DailyPost"
+            android:exported="false" />
+        <activity
+            android:name=".SavedPosts"
+            android:exported="false" />
+        <activity
+            android:name=".ProfileActivity"
+            android:exported="false" />
 
         <provider
             android:name="androidx.core.content.FileProvider"

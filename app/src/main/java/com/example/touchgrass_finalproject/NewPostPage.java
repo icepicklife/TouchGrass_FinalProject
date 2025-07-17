@@ -80,7 +80,7 @@ public class NewPostPage extends AppCompatActivity {
 
     private EditText description;
     private Button post;
-    private ImageView image, cancel, home;
+    private ImageView image, cancel, home, profile;
     private TextView title;
     private Realm realm;
     private Post postDetail;
@@ -97,6 +97,7 @@ public class NewPostPage extends AppCompatActivity {
         title = findViewById(R.id.postTitle);
         cancel = findViewById(R.id.cancelPost);
         home = findViewById(R.id.homeButton);
+        profile = findViewById(R.id.profileButton);
 
         if(postId!=null) {
             postDetail = realm.where(Post.class).equalTo("uuid",postId).findFirst();
@@ -120,12 +121,18 @@ public class NewPostPage extends AppCompatActivity {
         image.setOnClickListener(v -> takePhoto());
         cancel.setOnClickListener(v -> cancel());
         home.setOnClickListener(v -> home());
+        profile.setOnClickListener(v -> goToProfile());
     }
     public void home(){
         Intent intent = new Intent(this, HomePage.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         startActivity(intent);
         finish();
+    }
+
+    public void goToProfile(){
+        Intent intent = new Intent(this, ProfileActivity.class);
+        startActivity(intent);
     }
 
     public void post(){
@@ -159,7 +166,7 @@ public class NewPostPage extends AppCompatActivity {
         }
 
         realm.commitTransaction();
-        Toast.makeText(this, "Post saved", Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, "Posted!", Toast.LENGTH_SHORT).show();
         Intent intent = new Intent(this, PostDetailPage.class);
         intent.putExtra("post_id", postDetail.getUuid());
         intent.putExtra("edited",isEdited);

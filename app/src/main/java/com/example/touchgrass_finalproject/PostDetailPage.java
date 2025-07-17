@@ -10,6 +10,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
+
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -43,7 +45,7 @@ public class PostDetailPage extends AppCompatActivity {
     }
 
     private EditText text;
-    private ImageView profilePic, image, home, add, returnPost;
+    private ImageView profilePic, image, home, add, returnPost, save, profile;
     private Button edit, delete;
     private TextView date, username, edited;
     private Realm realm;
@@ -62,6 +64,8 @@ public class PostDetailPage extends AppCompatActivity {
         delete = findViewById(R.id.deletePost);
         home = findViewById(R.id.homeButton);
         add = findViewById(R.id.addButton);
+        profile = findViewById(R.id.profileButton);
+        save = findViewById(R.id.savePost);
         returnPost = findViewById(R.id.goBackReturn);
         edited = findViewById(R.id.edited);
         edited.setText("");
@@ -74,6 +78,8 @@ public class PostDetailPage extends AppCompatActivity {
         delete.setOnClickListener(v -> delete());
         home.setOnClickListener(v -> home());
         add.setOnClickListener(v -> add());
+        profile.setOnClickListener(v -> goToProfile());
+        save.setOnClickListener(v -> save());
         returnPost.setOnClickListener(v -> returnPost());
 
         postId = getIntent().getStringExtra("post_id");
@@ -142,6 +148,11 @@ public class PostDetailPage extends AppCompatActivity {
         startActivity(intent);
     }
 
+    public void goToProfile(){
+        Intent intent = new Intent(this, ProfileActivity.class);
+        startActivity(intent);
+    }
+
     public void edit(){
         Intent intent = new Intent(this, NewPostPage.class);
         intent.putExtra("post_id", postId);
@@ -167,4 +178,33 @@ public class PostDetailPage extends AppCompatActivity {
                     .setIconAttribute(android.R.attr.alertDialogIcon)
                     .show();
     }
+
+    public void save() {
+        if (postId != null) {
+            Post post = realm.where(Post.class).equalTo("uuid", postId).findFirst();
+
+            if (post != null) {
+                SharedPreferences prefs = getSharedPreferences("data", MODE_PRIVATE);
+                String currentUserId = prefs.getString("uuid", null);
+
+                if (currentUserId != null) {
+                    User user = realm.where(User.class).equalTo("uuid", currentUserId).findFirst();
+
+                    if (user != null) {
+                        realm.executeTransaction(r -> {
+                            if (user.getSavedPosts().contains(post)) {
+                                user.getSavedPosts().remove(post);
+                                Toast.makeText(this, "Post unsaved.", Toast.LENGTH_SHORT).show();
+                            } else {
+                                user.getSavedPosts().add(post);
+                                Toast.makeText(this, "Post saved!", Toast.LENGTH_SHORT).show();
+                            }
+                        });
+                    }
+                }
+            }
+        }
+    }
+
+
 }

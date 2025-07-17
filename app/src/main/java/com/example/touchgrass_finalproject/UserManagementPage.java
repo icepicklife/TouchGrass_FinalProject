@@ -85,7 +85,6 @@ public class UserManagementPage extends AppCompatActivity {
 
     public void delete(User user)
     {
-        // need to check if previously deleted
         if (user.isValid())
         {
             realm.beginTransaction();

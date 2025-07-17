@@ -50,7 +50,7 @@ public class MainActivity extends AppCompatActivity {
             realm = Realm.getDefaultInstance();
             editUser = findViewById(R.id.editUser);
             editPassword = findViewById(R.id.editPassword);
-            signIn = findViewById(R.id.signIn);
+            signIn = findViewById(R.id.savedPostsBtn);
             admin = findViewById(R.id.admin);
             clear = findViewById(R.id.clear);
             register = findViewById(R.id.register);

@@ -36,7 +36,7 @@ public class HomePage extends AppCompatActivity {
 
     private TextView welcome;
     private Realm realm;
-    private ImageView add, refresh;
+    private ImageView add, refresh, profile;
     RecyclerView postList;
     private Button logOut;
 
@@ -45,6 +45,7 @@ public class HomePage extends AppCompatActivity {
         realm = Realm.getDefaultInstance();
         welcome=findViewById(R.id.welcome);
         add=findViewById(R.id.addButton);
+        profile=findViewById(R.id.profileButton);
         postList=findViewById(R.id.postList);
         logOut=findViewById(R.id.logOut);
         refresh=findViewById(R.id.homeButton);
@@ -55,8 +56,13 @@ public class HomePage extends AppCompatActivity {
                 .equalTo("uuid",uuid)
                 .findFirst();
 
+
+
+
+
         welcome.setText(userID.getName() + "!");
         add.setOnClickListener(v -> addPost());
+        profile.setOnClickListener(v -> goToProfile());
         logOut.setOnClickListener(v -> logOut());
         refresh.setOnClickListener(v -> refresh());
 
@@ -73,6 +79,11 @@ public class HomePage extends AppCompatActivity {
 
     public void addPost(){
         Intent intent = new Intent(this, NewPostPage.class);
+        startActivity(intent);
+    }
+
+    public void goToProfile(){
+        Intent intent = new Intent(this, ProfileActivity.class);
         startActivity(intent);
     }
 
