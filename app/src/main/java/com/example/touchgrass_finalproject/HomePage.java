@@ -58,10 +58,6 @@ public class HomePage extends AppCompatActivity {
                 .equalTo("uuid",uuid)
                 .findFirst();
 
-
-
-
-
         welcome.setText(userID.getName() + "!");
         add.setOnClickListener(v -> addPost());
         profile.setOnClickListener(v -> goToProfile());

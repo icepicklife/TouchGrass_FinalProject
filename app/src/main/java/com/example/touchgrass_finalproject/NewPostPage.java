@@ -161,7 +161,7 @@ public class NewPostPage extends AppCompatActivity {
         postDetail.setUser(currentUser);
         realm.copyToRealmOrUpdate(postDetail);
 
-        if (!text.equals(originalDescription) || imageChanged) {
+        if (isEditing && (!text.equals(originalDescription) || imageChanged)) {
             isEdited = true;
         }
 
