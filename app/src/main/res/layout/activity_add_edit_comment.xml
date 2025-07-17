@@ -52,7 +52,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/CommentQuestionTitle" />
 
             <ImageButton
-                android:id="@+id/PostButton"
+                android:id="@+id/CommentPostButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="28dp"

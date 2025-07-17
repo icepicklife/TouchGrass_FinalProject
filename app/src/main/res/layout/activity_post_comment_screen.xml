@@ -8,8 +8,8 @@
     tools:context=".PostCommentScreenActivity">
 
     <LinearLayout
-        android:layout_width="427dp"
-        android:layout_height="713dp"
+        android:layout_width="458dp"
+        android:layout_height="727dp"
         android:background="@drawable/grass_background_16by9"
         android:backgroundTint="#132806"
         android:backgroundTintMode="multiply"
@@ -29,6 +29,7 @@
             android:textSize="60sp" />
 
         <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/CommentRecycler"
             android:layout_width="match_parent"
             android:layout_height="440dp"
             android:background="#E21C370E"
