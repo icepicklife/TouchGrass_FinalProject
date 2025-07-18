@@ -45,7 +45,7 @@ public class PostDetailPage extends AppCompatActivity {
     }
 
     private EditText text;
-    private ImageView profilePic, image, home, add, returnPost, save, profile;
+    private ImageView profilePic, image, home, add, returnPost, save, profile, comments;
     private Button edit, delete;
     private TextView date, username, edited;
     private Realm realm;
@@ -63,6 +63,7 @@ public class PostDetailPage extends AppCompatActivity {
         edit = findViewById(R.id.editPost);
         delete = findViewById(R.id.deletePost);
         home = findViewById(R.id.homeButton);
+        comments=findViewById(R.id.comments);
         add = findViewById(R.id.addButton);
         profile = findViewById(R.id.profileButton);
         save = findViewById(R.id.savePost);
@@ -81,6 +82,7 @@ public class PostDetailPage extends AppCompatActivity {
         profile.setOnClickListener(v -> goToProfile());
         save.setOnClickListener(v -> save());
         returnPost.setOnClickListener(v -> returnPost());
+        comments.setOnClickListener(v -> viewComments());
 
         postId = getIntent().getStringExtra("post_id");
         SimpleDateFormat sdf = new SimpleDateFormat("MMM dd, yyyy hh:mm a", Locale.getDefault());
@@ -139,6 +141,15 @@ public class PostDetailPage extends AppCompatActivity {
 
     public void returnPost(){
         finish();
+    }
+
+    public void viewComments(){
+
+        postId = getIntent().getStringExtra("post_id");
+
+        Intent viewComment_intent = new Intent(PostDetailPage.this, PostCommentScreenActivity.class);
+        viewComment_intent.putExtra("post_id", postId);
+        startActivity(viewComment_intent);
     }
 
     public void home(){
