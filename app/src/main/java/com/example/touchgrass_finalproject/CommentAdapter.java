@@ -27,7 +27,7 @@ import io.realm.RealmRecyclerViewAdapter;
 
 public class CommentAdapter extends RealmRecyclerViewAdapter<Comment, CommentAdapter.ViewHolder> {
 
-    private Context context;
+    private final Context context;
 
     public CommentAdapter(Context context, @Nullable OrderedRealmCollection<Comment> data, boolean autoUpdate) {
         super(data, autoUpdate);
@@ -74,7 +74,7 @@ public class CommentAdapter extends RealmRecyclerViewAdapter<Comment, CommentAda
             if (profilePhoto.exists()){
 
                 Picasso.get()
-                        .load(comment.getUserProfPic_url())
+                        .load(profilePhoto)
                         .networkPolicy(NetworkPolicy.NO_CACHE)
                         .memoryPolicy(MemoryPolicy.NO_CACHE)
                         .into(holder.profilePic);
@@ -84,11 +84,20 @@ public class CommentAdapter extends RealmRecyclerViewAdapter<Comment, CommentAda
                 holder.profilePic.setImageResource(R.drawable.ic_launcher_foreground);
             }
 
+            String activeUserName = CurrentUserSession.getUsername(context);
+
+            if (comment.getUsername().equals(activeUserName)) {
+
+                holder.EditButton.setVisibility(View.VISIBLE);
+
+            } else {
+
+                holder.EditButton.setVisibility(View.GONE);
+
+            }
 
             holder.EditButton.setOnClickListener(v -> OnEditButtonClick(comment));
         }
-
-
 
     }
 
@@ -100,12 +109,12 @@ public class CommentAdapter extends RealmRecyclerViewAdapter<Comment, CommentAda
 
             Intent edit_intent = new Intent(context, AddEditCommentActivity.class);
             edit_intent.putExtra("commentID", comment.getCommentUuid());
-            edit_intent.putExtra("postID", comment.getPostUUID());
+            edit_intent.putExtra("post_id", comment.getPostID());
             context.startActivity(edit_intent);
 
         } else {
 
-            Toast user_owner_prompt = Toast.makeText(context, "", Toast.LENGTH_SHORT);
+            Toast user_owner_prompt = Toast.makeText(context, "You can only edit your own comments", Toast.LENGTH_SHORT);
             user_owner_prompt.show();
 
         }

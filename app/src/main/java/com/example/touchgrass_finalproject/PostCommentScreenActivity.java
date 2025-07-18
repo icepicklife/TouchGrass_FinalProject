@@ -39,7 +39,7 @@ public class PostCommentScreenActivity extends AppCompatActivity {
 
     public void initViews(){
 
-        postID = getIntent().getStringExtra("postID");
+        postID = getIntent().getStringExtra("post_id");
 
         realm = Realm.getDefaultInstance();
         CommentButton = findViewById(R.id.CommentButton);
@@ -60,7 +60,7 @@ public class PostCommentScreenActivity extends AppCompatActivity {
     public void OnCommentClick(){
 
         Intent newComment_intent = new Intent(this, AddEditCommentActivity.class);
-        newComment_intent.putExtra("postID", postID);
+        newComment_intent.putExtra("post_id", postID);
         startActivity(newComment_intent);
 
     }
@@ -70,6 +70,14 @@ public class PostCommentScreenActivity extends AppCompatActivity {
 
         super.onDestroy();
         realm.close();
+
+    }
+
+    @Override
+    public void onResume() {
+
+        super.onResume();
+        adapter.notifyDataSetChanged();
 
     }
 }

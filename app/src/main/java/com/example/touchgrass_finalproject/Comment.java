@@ -10,7 +10,7 @@ public class Comment extends RealmObject {
 
     @PrimaryKey
     private String uuid = UUID.randomUUID().toString();
-    private String postUUID;
+    private String postID;
     private String userID;
     private String username;
     private String userProfPic_url;
@@ -21,7 +21,7 @@ public class Comment extends RealmObject {
 
         return "Post{" +
                 "uuid='" + uuid + '\'' +
-                ", postUUID=" + postUUID +
+                ", postUUID=" + postID +
                 ", username='" + username + '\'' +
                 ", userProfPic_url='" + userProfPic_url + '\'' +
                 ", content='" + comment_content +
@@ -51,15 +51,15 @@ public class Comment extends RealmObject {
 
     }
 
-    public String getPostUUID(){
+    public String getPostID(){
 
-        return postUUID;
+        return postID;
 
     }
 
-    public void setPostUUID( String PostUUID ){
+    public void setPostID( String PostUUID ){
 
-        this.postUUID = PostUUID;
+        this.postID = PostUUID;
 
     }
 
@@ -69,7 +69,7 @@ public class Comment extends RealmObject {
 
     }
 
-    public void setUsername( String Username ){
+    public void setUsername( String username ){
 
         this.username = username;
 
@@ -81,7 +81,7 @@ public class Comment extends RealmObject {
 
     }
 
-    public void setUserProfPic_url( String UserProfPic_url ){
+    public void setUserProfPic_url( String userProfPic_url ){
 
         this.userProfPic_url = userProfPic_url;
 

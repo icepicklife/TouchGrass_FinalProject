@@ -44,13 +44,13 @@ public class AddEditCommentActivity extends AppCompatActivity {
         CommentBoxInput = findViewById(R.id.CommentBoxInput);
         realm = Realm.getDefaultInstance();
 
-        PostID = getIntent().getStringExtra("postID");
+        PostID = getIntent().getStringExtra("post_id");
         CommentIDtoEdit = getIntent().getStringExtra("commentID");
 
         if (CommentIDtoEdit != null) {
 
             Comment existingComment = realm.where(Comment.class)
-                    .equalTo("commentID", CommentIDtoEdit)
+                    .equalTo("uuid", CommentIDtoEdit)
                     .findFirst();
 
             if (existingComment != null) {
@@ -80,18 +80,22 @@ public class AddEditCommentActivity extends AppCompatActivity {
             Comment comment;
             if (CommentIDtoEdit != null) {
                 comment = r.where(Comment.class)
-                        .equalTo("commentID", CommentIDtoEdit)
+                        .equalTo("uuid", CommentIDtoEdit)
                         .findFirst();
             } else {
                 comment = r.createObject(Comment.class, UUID.randomUUID().toString());
-                comment.setPostUUID(PostID);
+                comment.setPostID(PostID);
                 comment.setUserID(CurrentUserSession.getUserID(this));
                 comment.setUsername(CurrentUserSession.getUsername(this));
+                comment.setUserProfPic_url(CurrentUserSession.getUserID(this) + ".jpeg");
             }
             if (comment != null) {
                 comment.setCommentContent(comment_content);
             }
         });
+
+        Toast comment_posted_prompt = Toast.makeText(this, "Comment posted!", Toast.LENGTH_SHORT);
+        comment_posted_prompt.show();
 
         finish();
     }

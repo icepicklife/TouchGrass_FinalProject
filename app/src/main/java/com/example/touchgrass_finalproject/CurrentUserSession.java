@@ -9,14 +9,14 @@ public class CurrentUserSession {
 
     public static String getUsername(Context context) {
 
-        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
+        SharedPreferences prefs = context.getSharedPreferences("data", Context.MODE_PRIVATE);
         return prefs.getString("username", "unknown");
 
     }
 
     public static String getUserID(Context context) {
 
-        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
+        SharedPreferences prefs = context.getSharedPreferences("data", Context.MODE_PRIVATE);
         return prefs.getString("uuid", "");
 
     }

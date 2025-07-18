@@ -145,8 +145,6 @@ public class PostDetailPage extends AppCompatActivity {
 
     public void viewComments(){
 
-        postId = getIntent().getStringExtra("post_id");
-
         Intent viewComment_intent = new Intent(PostDetailPage.this, PostCommentScreenActivity.class);
         viewComment_intent.putExtra("post_id", postId);
         startActivity(viewComment_intent);
