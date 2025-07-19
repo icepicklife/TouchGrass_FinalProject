@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -35,9 +36,9 @@ public class CommentAdapter extends RealmRecyclerViewAdapter<Comment, CommentAda
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
-        TextView username, comment_content;
-        ImageView profilePic;
-        Button EditButton;
+        TextView username;
+        EditText comment_content;
+        ImageView profilePic, EditButton;
 
         public ViewHolder(@NonNull View itemView) {
 
@@ -81,7 +82,7 @@ public class CommentAdapter extends RealmRecyclerViewAdapter<Comment, CommentAda
 
             } else {
 
-                holder.profilePic.setImageResource(R.drawable.ic_launcher_foreground);
+                holder.profilePic.setImageResource(R.drawable.ic_launcher_background);
             }
 
             String activeUserName = CurrentUserSession.getUsername(context);

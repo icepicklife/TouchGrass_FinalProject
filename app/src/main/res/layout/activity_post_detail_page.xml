@@ -24,7 +24,7 @@
         app:layout_constraintVertical_bias="0.39" />
 
     <androidx.cardview.widget.CardView
-        android:id="@+id/cardView2"
+        android:id="@+id/cardView8"
         android:layout_width="63dp"
         android:layout_height="63dp"
         android:layout_marginTop="8dp"
@@ -54,8 +54,8 @@
         android:textColor="@color/black"
         android:textSize="12sp"
         android:textStyle="bold"
-        app:layout_constraintStart_toEndOf="@+id/cardView2"
-        app:layout_constraintTop_toTopOf="@+id/cardView2" />
+        app:layout_constraintStart_toEndOf="@+id/cardView8"
+        app:layout_constraintTop_toTopOf="@+id/cardView8" />
 
     <TextView
         android:id="@+id/dateOfPost"
@@ -99,8 +99,8 @@
         android:textSize="14sp"
         app:layout_constraintBottom_toTopOf="@+id/editPost"
         app:layout_constraintEnd_toStartOf="@+id/space2"
-        app:layout_constraintStart_toStartOf="@+id/cardView2"
-        app:layout_constraintTop_toBottomOf="@+id/cardView2"
+        app:layout_constraintStart_toStartOf="@+id/cardView8"
+        app:layout_constraintTop_toBottomOf="@+id/cardView8"
         app:layout_constraintVertical_bias="1.0" />
 
     <Button

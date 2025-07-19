@@ -98,7 +98,7 @@
         android:id="@+id/description"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:background="@android:color/transparent"
+        android:background="#BBCA9F"
         android:ems="10"
         android:fontFamily="@font/poppins_medium"
         android:gravity="start|top"

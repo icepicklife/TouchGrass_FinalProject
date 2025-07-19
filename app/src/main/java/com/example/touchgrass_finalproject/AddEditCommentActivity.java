@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.text.TextUtils;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
@@ -38,9 +39,9 @@ public class AddEditCommentActivity extends AppCompatActivity {
     private String CommentIDtoEdit;
     private String PostID;
     private ImageButton PostButton;
+    private ImageView back;
 
     public void initViews(){
-
         CommentBoxInput = findViewById(R.id.CommentBoxInput);
         realm = Realm.getDefaultInstance();
 
@@ -59,10 +60,10 @@ public class AddEditCommentActivity extends AppCompatActivity {
 
             }
         }
-
+        back = findViewById(R.id.goBackReturn2);
         PostButton = findViewById(R.id.CommentPostButton);
         PostButton.setOnClickListener(v -> OnPostCommentClick());
-
+        back.setOnClickListener(v -> goBack());
     }
 
     public void OnPostCommentClick() {
@@ -97,6 +98,10 @@ public class AddEditCommentActivity extends AppCompatActivity {
         Toast comment_posted_prompt = Toast.makeText(this, "Comment posted!", Toast.LENGTH_SHORT);
         comment_posted_prompt.show();
 
+        finish();
+    }
+
+    public void goBack(){
         finish();
     }
 

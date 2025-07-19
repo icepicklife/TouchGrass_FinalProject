@@ -3,6 +3,7 @@ package com.example.touchgrass_finalproject;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -36,6 +37,7 @@ public class PostCommentScreenActivity extends AppCompatActivity {
     private Realm realm;
     private String postID;
     private ImageButton CommentButton;
+    private ImageView back;
 
     public void initViews(){
 
@@ -44,6 +46,7 @@ public class PostCommentScreenActivity extends AppCompatActivity {
         realm = Realm.getDefaultInstance();
         CommentButton = findViewById(R.id.CommentButton);
         commentRecycle = findViewById(R.id.CommentRecycler);
+        back = findViewById(R.id.goBackReturn3);
 
         commentRecycle.setLayoutManager(new LinearLayoutManager(this));
 
@@ -55,6 +58,7 @@ public class PostCommentScreenActivity extends AppCompatActivity {
         commentRecycle.setAdapter(adapter);
 
         CommentButton.setOnClickListener(v -> OnCommentClick());
+        back.setOnClickListener(v -> goBack());
     }
 
     public void OnCommentClick(){
@@ -63,6 +67,10 @@ public class PostCommentScreenActivity extends AppCompatActivity {
         newComment_intent.putExtra("post_id", postID);
         startActivity(newComment_intent);
 
+    }
+
+    public void goBack(){
+        finish();
     }
 
     @Override
